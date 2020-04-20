@@ -1,0 +1,7 @@
+spring:
+  thymeleaf:
+    mode: HTML
+  mvc:
+    date-format: yyyy-MM-dd
+  profiles:
+    active: dev
