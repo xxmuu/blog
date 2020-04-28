@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title th:replace="${title}"></title>
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.css" th:href="@{/lib/editormd/css/editormd.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment m-pad-tb-mini m-shadow-small" th:fragment="menu(n)">
+    <div class="ui right aligned container">
+        <div class="ui inverted secondary stackable  menu">
+            <h2 class="ui teal header item">后台管理</h2>
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n == 1 } ? 'active'"><i class=" home icon"></i>博客</a>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n == 2 } ? 'active'"><i class=" table icon"></i>分类</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n == 3 } ? 'active'"><i class=" tags icon"></i>标签</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="https://unsplash.it/100/100?image=1005" th:src="${session.user.avatar}" alt="" class="ui avatar image">
+                        <span th:text="${session.user.nickname}">echo</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--手机端nav按钮-->
+    <a class="ui menu-button black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--底部-->
+<footer class="ui inverted vertical segment m-pad-tb-massive" th:fragment="footer">
+    <div class="ui center aligned container">
+        <div class="ui divided inverted stackable grid">
+            <div class="three wide column">
+                <div class="ui list">
+                    <div class="item">
+                        <img src="../../static/images/blog.png" th:src="@{/images/blog.png}" alt="" class="ui rounded image" style="width: 110px;">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column m-text-thin m-text-spaced .m-text-lined">
+                <h4 class="ui inverted header">最新博客</h4>
+                <div class="ui link list inverted">
+                    <a href="#" class="item">什么是面向对象三生三世</a>
+                    <a href="#" class="item">什么是面向对象</a>
+                    <a href="#" class="item">什么是面向对象</a>
+                </div>
+            </div>
+            <div class="four wide column m-text-thin m-text-spaced .m-text-lined">
+                <h4 class="ui  inverted header ">联系我</h4>
+                <div class="ui link  list inverted">
+                    <a href="#" class="item" style="word-break:break-all;word-wrap:break-word;">Email:echo1024gg@gmail.com</a>
+                    <a href="#" class="item">QQ:1229905014</a>
+                </div>
+            </div>
+            <div class="six wide column m-text-thin m-text-spaced .m-text-lined">
+                <h4 class="ui inverted header">Echo</h4>
+                <p class="m-text-opacity">csacacascacsaca</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced .m-text-lined m-text-opacity-tiny">Copyright © 2020 Echo1024 Designed by
+            Echo1024</p>
+    </div>
+</footer>
+<!--script-->
+<th:block th:fragment="script">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+</th:block>
+</body>
+</html>

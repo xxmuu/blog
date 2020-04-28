@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>后台管理--登录</title>
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+</head>
+<body>
+<div class="m-container-small m-pad-tb-massive" style="max-width: 30em !important;">
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <h2 class="ui teal image header">
+                <div class="content">
+                    后台管理
+                </div>
+            </h2>
+            <form class="ui large form" method="post" action="#" th:action="@{/admin/login}">
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="username" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <button class="ui fluid large teal submit button">登   录</button>
+                </div>
+                <!-- 表单验证错误信息 -->
+                <div class="ui error message"></div>
+                <!-- 后台返回错误信息 -->
+                <div class="ui negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></div>
+            </form>
+
+            <!--<div class="ui message">
+                新用户？ <a href="#">注册</a>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+<script>
+    //表单验证
+    $('.ui.form').form({
+        fields: {
+            username : {
+                identifier: 'username',
+                rules: [{
+                    type: 'empty',
+                    prompt: '用户名不能为空'
+                }]
+            },
+            password : {
+                identifier: 'password',
+                rules: [{
+                    type: 'empty',
+                    prompt: '密码不能为空'
+                }]
+            }
+        }
+    });
+</script>
+</body>
+</html>
