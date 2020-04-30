@@ -23,6 +23,6 @@ public class Tag {
     private String name;
 
     @ToString.Exclude
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tags",fetch = FetchType.EAGER)
     private List<Blog> blogs = new ArrayList<>();
 }

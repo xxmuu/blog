@@ -25,6 +25,6 @@ public class Type {
     private String name;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "type")
+    @OneToMany(mappedBy = "type",fetch = FetchType.EAGER)
     private List<Blog> blogs = new ArrayList<>();
 }

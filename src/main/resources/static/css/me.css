@@ -1,36 +1,49 @@
-html{
+html {
     min-height: 100% !important;
 }
-body{
+
+body {
     min-height: 100% !important;
-    position:relative;
-    background:url("../images/bg.png") !important;
+    position: relative;
+    background: url("../images/bg1.jpg") no-repeat fixed !important;
 }
-.m-main {/* main的padding-bottom值要等于或大于footer的height值 */
-    padding-bottom:100px;
+
+body::-webkit-scrollbar {
+    display: none;
 }
-.m-footer{
-    position:absolute !important;
-    bottom:0;
-    width:100%;
+
+.m-main { /* main的padding-bottom值要等于或大于footer的height值 */
+    padding-bottom: 100px;
 }
+
+.m-footer {
+    position: absolute !important;
+    bottom: 0;
+    width: 100%;
+}
+
 .m-pad-tiny {
     padding: 0.3em !important;
 }
+
 .m-pad {
     padding: 1em !important;
 }
-.m-pad-big{
+
+.m-pad-big {
     padding: 3em !important;
 }
-.m-pad-lr-mini{
+
+.m-pad-lr-mini {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
-.m-pad-lr-tiny{
+
+.m-pad-lr-tiny {
     padding-left: 0.3em !important;
     padding-right: 0.3em !important;
 }
+
 .m-pad-tb-mini {
     padding-top: 0.2em !important;
     padding-bottom: 0.2em !important;
@@ -40,10 +53,12 @@ body{
     padding-top: 0.3em !important;
     padding-bottom: 0.3em !important;
 }
+
 .m-pad-tb {
     padding-top: 1em !important;
     padding-bottom: 1em !important;
 }
+
 .m-pad-tb-large {
     padding-top: 2em !important;
     padding-bottom: 2em !important;
@@ -58,9 +73,11 @@ body{
     padding-top: 5em !important;
     padding-bottom: 5em !important;
 }
+
 .m-pad-lr {
     padding: 0 2em !important;
 }
+
 .m-text {
     font-weight: 300 !important;
     letter-spacing: 1px !important;
@@ -83,37 +100,62 @@ body{
 .m-text-opacity {
     opacity: 0.8;
 }
+
 .m-text-opacity-tiny {
     opacity: 0.6;
 }
+
 .m-inline-block {
     display: inline-block !important;
 }
+
 .m-container {
     max-width: 72em !important;
     margin: auto !important;
 }
+
 .m-container-small {
     max-width: 60em !important;
     margin: auto !important;
 }
+
 /*-----margin------*/
 .m-margin-tb-tiny {
     margin-top: 0.3em !important;
     margin-bottom: 0.3em !important;
 }
+
 .m-margin-tb-big {
     margin-top: 13em !important;
     margin-bottom: 13em !important;
 }
-.m-margin-top-mini{
+
+.m-margin-top-mini {
     margin-top: 1em !important;
 }
+
 .m-margin-top-large {
     margin-top: 3em !important;
 }
+
 .m-margin-r {
     margin-right: 1.5em !important;
+}
+.m-span-wb {
+    color: whitesmoke;
+    width:100%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    display: inline-block;
+    height: 40px;
+    line-height: 35px;
+    border-bottom-right-radius:0.3125em;
+    border-bottom-left-radius:0.3125em;
+}
+.m-text-overflow {
+    text-overflow:ellipsis !important;
+    overflow: hidden;
+    white-space:nowrap;
 }
 /*-----position-----*/
 .m-right-top {
@@ -121,53 +163,78 @@ body{
     top: 0;
     right: 0;
 }
+.m-relative {
+    position: relative !important;
+}
+.m-absolute {
+    z-index: 1 !important;
+    position: absolute !important;
+}
 .m-fixed {
     z-index: 1 !important;
     position: fixed !important;
 }
+
 .m-right-bottom {
     bottom: 0 !important;
     right: 0 !important;
 }
-
+.m-left-bottom {
+    left: 0 !important;
+    bottom: 0 !important;
+}
 /*----color-----*/
 .m-black {
     color: #3d3d3d;
 }
+
 .m-mobile-show {
     display: none !important;
 }
+
+.m-bg-opacity {
+    opacity: 58%;
+}
+
 /*----shadow-----*/
 .m-shadow-small {
-    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
+
 /*-----mobile------*/
 @media screen and (max-width: 768px) {
     .m-mobile-hide {
         display: none !important;
     }
+
     .m-mobile-show {
         display: block !important;
     }
+
     .m-pad-lr {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+
     .m-mobile-wide {
         width: 100%;
     }
+
     .m-pad-lr-clear {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+
     .m-margin-r {
         margin-right: 0.5em !important;
     }
-    .m-mobile-pad-lr-tiny{
+
+    .m-mobile-pad-lr-tiny {
         padding-left: 0.3em !important;
         padding-right: 0.3em !important;
     }
+
     .m-margin-tb-big {
         margin-top: 5em !important;
         margin-bottom: 5em !important;

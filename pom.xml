@@ -66,6 +66,23 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- 转换为md格式 -->
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>0.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-heading-anchor</artifactId>
+            <version>0.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-gfm-tables</artifactId>
+            <version>0.14.0</version>
+        </dependency>
+
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

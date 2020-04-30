@@ -41,143 +41,64 @@
                     <h3 class="ui teal header">分类</h3>
                 </div>
                 <div class="right aligned column">
-                    共&nbsp;<h2 class="ui orange header m-inline-block m-text-thin">12</h2>&nbsp;个
+                    共&nbsp;<h2 class="ui orange header m-inline-block m-text-thin" th:text="${#lists.size(types)}">12</h2>&nbsp;个
                 </div>
             </div>
         </div>
         <!--标签-->
         <div class="ui attached segment m-pad-tb-large">
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic teal button">测试</a>
-                <div class="ui basic teal left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic teal button">测试</a>
-                <div class="ui basic teal left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic teal button">测试</a>
-                <div class="ui basic teal left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic teal button">测试</a>
-                <div class="ui basic teal left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic teal button">测试</a>
-                <div class="ui basic teal left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic teal button">测试</a>
-                <div class="ui basic teal left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic  button">软件测试</a>
-                <div class="ui basic  left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic  button">软件测试</a>
-                <div class="ui basic  left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic  button">软件测试</a>
-                <div class="ui basic  left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic  button">软件测试</a>
-                <div class="ui basic  left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic  button">软件测试</a>
-                <div class="ui basic  left pointing label">21</div>
-            </div>
-            <div class="ui labeled button m-margin-tb-tiny">
-                <a href="#" class="ui basic  button">软件测试</a>
-                <div class="ui basic  left pointing label">21</div>
+
+            <div class="ui labeled button m-margin-tb-tiny" th:each="type : ${types}">
+                <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui basic button" th:classappend="${type.id == activeTypeId} ? 'teal'" th:text="${type.name}">测试</a>
+                <div class="ui basic left pointing label" th:classappend="${type.id == activeTypeId} ? 'teal'" th:text="${#lists.size(type.blogs)}">21</div>
             </div>
 
         </div>
         <!--文章列表-->
         <div class="ui top attached teal segment">
-            <div class="ui padded vertical segment m-pad-tb-big m-pad-lr-clear">
-                <div class="ui mobile reversed stackable grid">
+            <div class="ui padded vertical segment m-pad-tb-big m-pad-lr-clear" th:each="blog : ${page.content}">
+                <div class="ui middle aligned mobile reversed stackable grid">
                     <div class="eleven wide column">
-                        <h3 class="ui header">你真的理解什么是财富自由吗？</h3>
-                        <p class="m-text">你真的理解什么是财富自由吗你真的理解什么是财富自由吗你真的理解什么是财富自由吗你真的理解什么是财富自由吗</p>
+                        <h3 class="ui header"><a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}" class="m-black" th:text="${blog.title}">财富密码财富密码财富密码？</a></h3>
+                        <p class="m-text" th:text="|${blog.description}.......|">财富密码财富密码财富密码财富密码财富密码财富密码财富密码财富密码财富密码</p>
                         <div class="ui stackable grid">
                             <div class="eleven wide column">
                                 <div class="ui mini horizontal link list">
                                     <div class="item">
-                                        <img src="https://unsplash.it/800/450?image=1005" alt=""
+                                        <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.user.avatar}}" alt=""
                                              class="ui avatar image">
-                                        <div class="content">李仁密</div>
+                                        <div class="content" th:text="${blog.user.nickname}">xxmuu</div>
                                     </div>
                                     <div class="item">
-                                        <i class="calendar icon"></i>2020-04-14
+                                        <i class="calendar icon"></i><th:block th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-04-14</th:block>
                                     </div>
                                     <div class="item">
-                                        <i class=" eye icon"></i>1024
+                                        <i class=" eye icon"></i><th:block th:text="${blog.views}">1024</th:block>
                                     </div>
                                 </div>
                             </div>
                             <div class="five wide column">
                                 <a href="#" target="_blank"
-                                   class="ui right aligned teal basic label m-pad-tiny m-text-thin">认知升级</a>
+                                   class="ui right aligned teal basic label m-pad-tiny m-text-thin" th:text="${blog.type.name}">认知升级</a>
                             </div>
                         </div>
                     </div>
                     <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://unsplash.it/800/450?image=1005" alt="" class="ui rounded image">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                            <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image">
                         </a>
-                    </div>
-                </div>
-            </div>
-            <div class="ui padded vertical segment m-pad-tb-big m-pad-lr-clear">
-                <div class="ui padded vertical segment m-pad-tb-big m-pad-lr-clear">
-                    <div class="ui mobile reversed stackable grid">
-                        <div class="eleven wide column">
-                            <h3 class="ui header">你真的理解什么是财富自由吗？</h3>
-                            <p class="m-text">你真的理解什么是财富自由吗你真的理解什么是财富自由吗你真的理解什么是财富自由吗你真的理解什么是财富自由吗</p>
-                            <div class="ui stackable grid">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://unsplash.it/800/450?image=1005" alt=""
-                                                 class="ui avatar image">
-                                            <div class="content">李仁密</div>
-                                        </div>
-                                        <div class="item">
-                                            <i class="calendar icon"></i>2020-04-14
-                                        </div>
-                                        <div class="item">
-                                            <i class=" eye icon"></i>1024
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank"
-                                       class="ui right aligned teal basic label m-pad-tiny m-text-thin">认知升级</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="five wide column">
-                            <a href="#" target="_blank">
-                                <img src="https://unsplash.it/800/450?image=1005" alt="" class="ui rounded image">
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--bottom-->
-        <div class="ui bottom attached segment">
+        <div class="ui bottom attached segment" th:if="${page.totalPages} > 1">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <a href="#" class="ui tiny teal basic button">上一页</a>
+                    <a href="#" class="ui tiny teal basic button" th:href="@{/(page=${page.number} - 1)}" th:unless="${page.first}">上一页</a>
                 </div>
                 <div class="right aligned column">
-                    <a href="#" class="ui tiny teal basic button">下一页</a>
+                    <a href="#" class="ui tiny teal basic button" th:href="@{/(page=${page.number} + 1)}" th:unless="${page.last}">下一页</a>
                 </div>
             </div>
         </div>

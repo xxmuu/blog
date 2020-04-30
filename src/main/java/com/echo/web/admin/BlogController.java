@@ -38,14 +38,14 @@ public class BlogController {
     private TagService tagService;
 
     @GetMapping("/blogs")
-    public String blogs(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
+    public String blogs(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return LIST;
     }
 
     @PostMapping("/blogs/search")
-    public String search(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
+    public String search(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin/blogs :: blogList";
     }
@@ -72,7 +72,12 @@ public class BlogController {
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTags(tagService.listTag(blog.getTagIds()));
-        Blog blog1 = blogService.saveBlog(blog);
+        Blog blog1 = null;
+        if(blog.getId() == null){
+            blog1 = blogService.saveBlog(blog);
+        }else{
+            blog1 = blogService.updateBlog(blog.getId(),blog);
+        }
         if (blog1 == null){
             attributes.addFlashAttribute("message","操作失败");
         }else{

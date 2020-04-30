@@ -33,6 +33,7 @@ public class Blog {
     private boolean commentabled;//评论
     private boolean pulished;//发布
     private boolean recommend;//推荐
+    private String description;//描述
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)

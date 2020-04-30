@@ -1,10 +1,12 @@
 spring:
   thymeleaf:
-    mode: LEGACYHTML5
+    mode: HTML
     cache: false
     servlet:
       content-type: text/html
+  messages:
+    basename: i18n/messages
   mvc:
-    date-format: yyyy-MM-dd
+    date-format: yyyy-MM-dd HH:mm:ss
   profiles:
     active: dev

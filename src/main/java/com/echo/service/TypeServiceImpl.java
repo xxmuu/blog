@@ -6,7 +6,9 @@ import com.echo.po.Type;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +25,18 @@ public class TypeServiceImpl implements TypeService {
     public Type saveType(Type type) {
         return typeRepository.save(type);
     }
+    @Transactional
+    @Override
+    public List<Type> listTypeTop(Integer size) {
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC,"blogs.size");
+        Pageable pageable = PageRequest.of(0,size,Sort.by(order));
+        return typeRepository.findTop(pageable);
+    }
 
     @Transactional
     @Override
     public Type getType(Long id) { return typeRepository.findById(id).get(); }
-
+    @Transactional
     @Override
     public Type getTypeByName(String name) {
         return typeRepository.findByName(name);
@@ -38,7 +47,7 @@ public class TypeServiceImpl implements TypeService {
     public Page<Type> listType(Pageable pageable) {
         return typeRepository.findAll(pageable);
     }
-
+    @Transactional
     @Override
     public List<Type> listType() {
         return typeRepository.findAll();
