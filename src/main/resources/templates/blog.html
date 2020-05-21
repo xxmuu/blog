@@ -3,7 +3,7 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>博客详情</title>
+    <title th:text="|${blog.title}-xxMuuの个人博客|">博客详情-xxMuuの个人博客</title>
     <link rel="stylesheet" href="../static/css/typo.css">
     <link rel="stylesheet" href="../static/css/animate.min.css">
     <link rel="stylesheet" href="../static/lib/prism/prism.css">
@@ -55,7 +55,8 @@
             </div>
         </div>
         <div class="ui attached segment">
-            <img src="https://unsplash.it/800/450?image=1005" th:src="${blog.firstPicture}" alt="" class="ui rounded fluid image">
+            <img src="https://unsplash.it/800/450?image=1005" th:src="${blog.firstPicture}" alt=""
+                 class="ui rounded fluid image">
         </div>
         <div class=" ui attached segment">
             <!--content-->
@@ -64,7 +65,8 @@
             </div>
             <h2 class="ui center aligned header" th:text="${blog.title}">Typo.css</h2>
             <!--内容-->
-            <div id="content" class="js-toc-content typo typo-selection m-pad-lr m-pad-tb m-text-spaced" th:utext="${blog.content}">
+            <div id="content" class="js-toc-content typo typo-selection m-pad-lr m-pad-tb m-text-spaced"
+                 th:utext="${blog.content}">
 
             </div>
             <!--标签-->
@@ -85,99 +87,85 @@
             </ui>
         </div>
         <!--留言-->
-        <div id="comment-container" class="ui bottom attached segment">
-            <div class="ui segment">
-                <div class="ui comments">
-                    <h3 class="ui dividing header">Comments</h3>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://unsplash.it/800/450?image=1005">
-                        </a>
-                        <div class="content">
-                            <a class="author">Matt</a>
-                            <div class="metadata">
-                                <span class="date">Today at 5:42PM</span>
-                            </div>
-                            <div class="text">
-                                How artistic!
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://unsplash.it/800/450?image=1005">
-                        </a>
-                        <div class="content">
-                            <a class="author">Elliot Fu</a>
-                            <div class="metadata">
-                                <span class="date">Yesterday at 12:30AM</span>
-                            </div>
-                            <div class="text">
-                                <p>This has been very useful for my research. Thanks as well!</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                        <div class="comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="https://unsplash.it/800/450?image=1005">
+        <div class="ui bottom attached segment" th:if="${blog.commentabled}">
+            <!-- 留言列表 -->
+            <div id="comment-container" class="ui segment">
+                <div th:fragment="commentList">
+                    <div class="ui comments">
+                        <h3 class="ui dividing header">评论</h3>
+                        <div class="comment" th:each="comment : ${comments}">
+                            <a class="avatar">
+                                <img src="https://unsplash.it/800/450?image=1005" th:src="${comment.avatar}">
+                            </a>
+                            <div class="content">
+                                <a class="author">
+                                 <span th:text="${comment.nickname}">xxMuu</span>
+                                    <div class="ui mini basic teal left pointing label m-pad-mini" th:if="${comment.adminComment}">博主</div>
                                 </a>
-                                <div class="content">
-                                    <a class="author">Jenny Hess</a>
-                                    <div class="metadata">
-                                        <span class="date">Just now</span>
-                                    </div>
-                                    <div class="text">
-                                        Elliot you are always so right :)
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
+                                <div class="metadata">
+                                    <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+                                </div>
+                                <div class="text" th:text="${comment.content}">
+                                    How artistic!
+                                </div>
+                                <div class="actions">
+                                    <a class="reply" data-commentid="1" data-commentnickname="mark" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}" onclick="reply(this)">回复</a>
+                                </div>
+                            </div>
+                            <div class="comments" th:if="${#lists.size(comment.replayComments)} > 0">
+                                <div class="comment" th:each="reply : ${comment.replayComments}">
+                                    <a class="avatar">
+                                        <img src="https://unsplash.it/800/450?image=1005" th:src="${reply.avatar}">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author" >
+                                           <span th:text="${reply.nickname}">xxMuu</span>
+                                            <div class="ui mini basic teal left pointing label m-pad-mini" th:if="${reply.adminComment}">博主</div>
+                                            &nbsp;<span th:text="|@ ${reply.parentComment.nickname}|">@ccc</span>
+                                        </a>
+                                        <div class="metadata">
+                                            <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
+                                        </div>
+                                        <div class="text" th:text="${reply.content}">
+                                            How artistic!
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply" data-commentid="1" data-commentnickname="mark" th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}" onclick="reply(this)">回复</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://unsplash.it/800/450?image=1005">
-                        </a>
-                        <div class="content">
-                            <a class="author">Joe Henderson</a>
-                            <div class="metadata">
-                                <span class="date">5 days ago</span>
-                            </div>
-                            <div class="text">
-                                Dude, this is awesome. Thanks so much
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
+                </div>
+            </div>
+            <div id="comment-form" class="ui form">
+                <input type="hidden" name="blog.id" th:value="${blog.id}">
+                <input type="hidden" name="parentComment.id" value="-1">
+                <div id="textarea-content" class="field">
+                    <textarea name="content" placeholder="请输入评论信息..."></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="昵称">
                         </div>
+                    </div>
+                    <div class="field">
+                        <button id="comment-post-btn" type="button" class="ui button teal m-mobile-wide"><i class="edit icon"></i>发布</button>
                     </div>
                 </div>
             </div>
-            <div class="ui form">
-                <div class="field">
-                    <textarea name="content" placeholder="请输入评论信息..."></textarea>
-                </div>
-                <div class="field m-mobile-wide">
-                    <button class="ui button teal m-mobile-wide"><i class="edit icon"></i>发布</button>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
-
 <!--工具条-->
 <div class="m-pad m-fixed m-right-bottom">
     <div class="ui vertical buttons icon">
         <button type="button" class="ui toc teal button">目录</button>
-        <a href="#comment-container" class="ui teal button">留言</a>
+        <a href="#textarea-content" class="ui teal button">留言</a>
         <button class="wechat ui icon button"><i class="weixin icon"></i></button>
         <div id="toTop" class="ui icon button"><i class="large chevron up icon"></i></div>
     </div>
@@ -193,37 +181,7 @@
 <!--底部-->
 <footer class="ui inverted vertical segment m-pad-tb-massive" th:replace="_fragments :: footer">
     <div class="ui center aligned container">
-        <div class="ui divided inverted stackable grid">
-            <div class="three wide column">
-                <div class="ui list">
-                    <div class="item">
-                        <img src="../static/images/blog.png" alt="" class="ui rounded image" style="width: 110px;">
-                    </div>
-                </div>
-            </div>
-            <div class="three wide column m-text-thin m-text-spaced .m-text-lined">
-                <h4 class="ui inverted header">最新博客</h4>
-                <div class="ui link list inverted">
-                    <a href="#" class="item">什么是面向对象三生三世</a>
-                    <a href="#" class="item">什么是面向对象</a>
-                    <a href="#" class="item">什么是面向对象</a>
-                </div>
-            </div>
-            <div class="four wide column m-text-thin m-text-spaced .m-text-lined">
-                <h4 class="ui  inverted header ">联系我</h4>
-                <div class="ui link  list inverted">
-                    <a href="#" class="item" style="word-break:break-all;word-wrap:break-word;">Email:echo1024gg@gmail.com</a>
-                    <a href="#" class="item">QQ:1229905014</a>
-                </div>
-            </div>
-            <div class="six wide column m-text-thin m-text-spaced .m-text-lined">
-                <h4 class="ui inverted header">Echo</h4>
-                <p class="m-text-opacity">csacacascacsaca</p>
-            </div>
-        </div>
-        <div class="ui inverted section divider"></div>
-        <p class="m-text-thin m-text-spaced .m-text-lined m-text-opacity-tiny">Copyright © 2020 Echo1024 Designed by
-            Echo1024</p>
+        <p class="m-text-thin m-text-spaced .m-text-lined m-text-opacity-tiny">Copyright © 2020 xxMuu Designed by xxMuu</p>
     </div>
 </footer>
 <!--script-->
@@ -247,34 +205,95 @@
         //什么地方需要生成目录
         contentSelector: '.js-toc-content',
         //生成目录的级别
-        headingSelector: 'h1,h2,h3',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
     });
     //目录显示位置
     $('.toc.button').popup({
-        popup : $('.toc-container.popup'),
-        on : 'click',
-        position : 'top center'
+        popup: $('.toc-container.popup'),
+        on: 'click',
+        position: 'left center'
     });
     //二维码显示位置
     $('.wechat').popup({
-        popup : $('.wechat-qr'),
-        position : 'left center'
+        popup: $('.wechat-qr'),
+        position: 'left center'
     });
-    var serurl = /*[[#{blog.serurl}]]*/"127.0.0.1:8080";
-    var url = /*[[@{/blog/{id}(id=${blog.id}})}]]*/"";
+    var serurl = '139.196.182.178:8080';
+    var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/ null;
     //二维码插件初始化
     var qrcode = new QRCode("qrcode", {
-        text: serurl+url,
+        text: serurl + url,
         width: 120,
         height: 120,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
     });
     //返回顶部，使用了scroto
     $('#toTop').click(function () {
-       $(window).scrollTo(0,500);//插件--y坐标,间隔时间
+        $(window).scrollTo(0, 500);//插件--y坐标,间隔时间
         //window.scrollTo(0,0);//HTML DOM--x,y坐标
+    });
+    //评论表单验证
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入评论内容'
+                }]
+            },
+            content: {
+                identifier: 'nickname',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入昵称'
+                }]
+            }
+        }
+    });
+
+    $(function () {
+        $('#comment-container').load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"");
+    });
+
+    $('#comment-post-btn').click(function () {
+      var boo = $('.ui.form').form('validate form');//调用表单验证
+        if (boo) {
+            postData();
+        }
+    });
+    function postData() {
+        $('#comment-container').load(/*[[@{/comments}]]*/"",{
+            "parentComment.id" : $("[name='parentComment.id']").val(),
+            "blog.id" : $("[name='blog.id']").val(),
+            "nickname" : $("[name='nickname']").val(),
+            "content" : $("[name='content']").val()
+        },function (response,status,xmlHttpRequest) {
+            // $(window).scrollTo($('#comment-container'),500);
+            clear();
+        });
+    }
+    function clear() {
+        $("[name='content']").val('');
+        $("[name='parentComment.id']").val(-1);
+        $("[name='content']").attr("placeholder","请输入评论信息...");
+    }
+    function reply(obj) {
+        var commentId = $(obj).data('commentid');
+        var commentNickname = $(obj).data('commentnickname');
+        $("[name='content']").attr("placeholder","@"+commentNickname).focus();
+        $("[name='parentComment.id']").val(commentId);
+        $(window).scrollTo($('#comment-form'),500);
+    }
+    $('.m-mobile-show').click(function () {
+        var height = $('nav').css('max-height');
+        if(height == '69px'){
+            $('nav').css('max-height','360px');
+        }else{
+            $('nav').css('max-height','69px');
+        }
     });
 </script>
 </body>

@@ -45,7 +45,6 @@ public class  LogAspect {
 
     @After("log()")
     public void doAfter(){
-        logger.info("-------- doAfter ----------");
     }
 
     /**

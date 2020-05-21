@@ -87,5 +87,31 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
 </th:block>
+<script>
+    $(function(){
+        function footerPosition(){
+            $("footer").removeClass("fixed-bottom");
+            var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+            if(!(contentHeight > winHeight)){
+                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                $("footer").addClass("fixed-bottom");
+            }
+        }
+        footerPosition();
+        $(window).resize(footerPosition);
+    });
+    $('.menu-button').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.m-mobile-show').click(function () {
+        var height = $('nav').css('max-height');
+        if (height == '69px') {
+            $('nav').css('max-height', '360px');
+        } else {
+            $('nav').css('max-height', '69px');
+        }
+    });
+</script>
 </body>
 </html>

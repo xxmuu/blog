@@ -24,6 +24,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
+    private String nickname;
+    private String avatar;
     private Date createTime;
 
     @ToString.Exclude
@@ -36,6 +38,8 @@ public class Comment {
     @ManyToOne
     private Comment parentComment;
     @ToString.Exclude
-    @OneToMany(mappedBy = "parentComment")
+    @OneToMany(mappedBy = "parentComment",fetch = FetchType.EAGER)
     private List<Comment> replayComments = new ArrayList<>();
+
+    private boolean adminComment;
 }

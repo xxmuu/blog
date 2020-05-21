@@ -28,12 +28,13 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogRepository blogRepository;
 
+    @Transactional
     @Override
     public Blog getBlog(Long id) {
-
         return blogRepository.findById(id).get();
     }
 
+    @Transactional
     @Override
     public Blog getAndConvert(Long id) {
         Blog blog = blogRepository.findById(id).get();
@@ -44,6 +45,7 @@ public class BlogServiceImpl implements BlogService {
         BeanUtils.copyProperties(blog,blog1);
         String content = blog1.getContent();
         blog1.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        blogRepository.updateViews(id);
         return blog1;
     }
 

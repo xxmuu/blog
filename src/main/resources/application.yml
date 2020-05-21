@@ -1,7 +1,7 @@
 spring:
   thymeleaf:
     mode: HTML
-    cache: false
+    cache: true
     servlet:
       content-type: text/html
   messages:
@@ -9,4 +9,5 @@ spring:
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
   profiles:
-    active: dev
+    active: pro
+comment.avatar: /images/avatar.jpg

@@ -3,7 +3,8 @@
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title th:replace="${title}">博客详情</title>
+    <title th:replace="${title}">title</title>
+    <link rel="shortcut icon" href="../static/images/xx-32.ico" type="image/x-icon" th:href="@{/images/xx-32.ico}" />
     <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
     <link rel="stylesheet" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
     <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
@@ -13,23 +14,23 @@
 </head>
 <body>
 <!--导航-->
-<nav class="ui inverted attached segment m-pad-tb-mini m-shadow-small" th:fragment="menu(n)">
+<nav class="ui attached segment m-pad-tb-mini m-shadow-small m-nav-block" th:fragment="menu(n)">
     <div class="ui right aligned container">
-        <div class="ui inverted secondary stackable  menu">
-            <h2 class="ui teal header item">Echo</h2>
-            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n == 1 } ? 'active' "><i
-                    class=" home icon"></i>首页</a>
-            <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n == 2 } ? 'active' "><i
-                    class=" table icon"></i>分类</a>
-            <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n == 3 } ? 'active' "><i
-                    class=" tags icon"></i>标签</a>
-            <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n == 4 } ? 'active' "><i
-                    class=" clone icon"></i>归档</a>
-            <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n == 5 } ? 'active' "><i
-                    class=" info icon"></i>关于我</a>
+        <div class="ui secondary stackable  menu">
+            <h1 class="ui header item m-logo">xxMuu</h1>
+            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide m-a-font-large" th:classappend="${n == 1 } ? 'active' "><i
+                    class="large home icon"></i>主页</a>
+            <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide m-a-font-large" th:classappend="${n == 2 } ? 'active' "><i
+                    class="large bookmark outline icon"></i>分类</a>
+            <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide m-a-font-large" th:classappend="${n == 3 } ? 'active' "><i
+                    class="large tags icon"></i>标签</a>
+            <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide m-a-font-large" th:classappend="${n == 4 } ? 'active' "><i
+                    class="large clone icon"></i>归档</a>
+            <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide m-a-font-large" th:classappend="${n == 5 } ? 'active' "><i
+                    class="large info icon"></i>关于我</a>
             <div class="right m-item item m-mobile-hide">
                 <form name="search" action="#" method="post" target="_blank" th:action="@{/search}">
-                    <div class="ui icon inverted transparent input">
+                    <div class="ui icon transparent input">
                         <input type="text" name="query" placeholder="搜索..." th:value="${query}">
                         <i onclick="document.forms['search'].submit()" class="link search icon"></i>
                     </div>
@@ -43,40 +44,9 @@
     </a>
 </nav>
 <!--底部-->
-<footer class="ui inverted vertical segment m-pad-tb-large" th:fragment="footer">
+<footer class="ui vertical segment m-pad-tb-massive m-bg-opacity" th:fragment="footer">
     <div class="ui center aligned container">
-        <!--<div class="ui divided inverted stackable grid">
-            <div class="three wide column">
-                <div class="ui list">
-                    <div class="item">
-                        <img src="../static/images/blog.png" th:src="@{/images/blog.png}" alt=""
-                             class="ui rounded image" style="width: 110px;">
-                    </div>
-                </div>
-            </div>
-            <div class="three wide column m-text-thin m-text-spaced .m-text-lined">
-                <h4 class="ui inverted header">最新博客</h4>
-                <div class="ui link list inverted">
-                    <a href="#" class="item">什么是面向对象三生三世</a>
-                    <a href="#" class="item">什么是面向对象</a>
-                    <a href="#" class="item">什么是面向对象</a>
-                </div>
-            </div>
-            <div class="four wide column m-text-thin m-text-spaced .m-text-lined">
-                <h4 class="ui  inverted header ">联系我</h4>
-                <div class="ui link  list inverted">
-                    <a href="#" class="item" style="word-break:break-all;word-wrap:break-word;">Email:echo1024gg@gmail.com</a>
-                    <a href="#" class="item">QQ:1229905014</a>
-                </div>
-            </div>
-            <div class="six wide column m-text-thin m-text-spaced .m-text-lined">
-                <h4 class="ui inverted header">Echo</h4>
-                <p class="m-text-opacity">csacacascacsaca</p>
-            </div>
-        </div>-->
-        <!--<div class="ui inverted section divider"></div>-->
-        <p class="m-text-thin m-text-spaced .m-text-lined m-text-opacity-tiny">Copyright © 2020 Echo1024 Designed by
-            Echo1024</p>
+        <p class="m-text-thin m-text-spaced .m-text-lined m-text-opacity-tiny">Copyright © 2020 xxMuu Designed by xxMuu</p>
     </div>
 </footer>
 <!--script-->

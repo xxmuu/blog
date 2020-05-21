@@ -1,15 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+}
 html {
     min-height: 100% !important;
 }
-
 body {
     min-height: 100% !important;
     position: relative;
-    background: url("../images/bg1.jpg") no-repeat fixed !important;
+    /*background: url("../images/tbg.png") no-repeat fixed !important;*/
+    background-color: #f2f2f2 !important;
 }
-
-body::-webkit-scrollbar {
-    display: none;
+.m-top {
+    width: 100%;
+    height: calc(100vh);
+    background: url("../images/bg1.png") no-repeat fixed !important;
 }
 
 .m-main { /* main的padding-bottom值要等于或大于footer的height值 */
@@ -24,6 +29,10 @@ body::-webkit-scrollbar {
 
 .m-pad-tiny {
     padding: 0.3em !important;
+}
+
+.m-pad-mini {
+    padding: 0.1em !important;
 }
 
 .m-pad {
@@ -74,6 +83,10 @@ body::-webkit-scrollbar {
     padding-bottom: 5em !important;
 }
 
+.m-pad-top-large {
+    padding-top: calc(35vh) !important;
+}
+
 .m-pad-lr {
     padding: 0 2em !important;
 }
@@ -105,6 +118,13 @@ body::-webkit-scrollbar {
     opacity: 0.6;
 }
 
+.m-text-family {
+    font-family: 'STXingkai' !important;
+    color: white !important;
+}
+.m-font {
+
+}
 .m-inline-block {
     display: inline-block !important;
 }
@@ -134,6 +154,14 @@ body::-webkit-scrollbar {
     margin-top: 1em !important;
 }
 
+.m-margin-top {
+    margin-top: 5px !important;
+}
+
+.m-margin-top-big {
+    margin-top: 20em !important;
+}
+
 .m-margin-top-large {
     margin-top: 3em !important;
 }
@@ -141,59 +169,138 @@ body::-webkit-scrollbar {
 .m-margin-r {
     margin-right: 1.5em !important;
 }
+
 .m-span-wb {
     color: whitesmoke;
-    width:100%;
+    width: 100%;
     background: rgba(0, 0, 0, 0.6);
     padding: 5px;
     display: inline-block;
     height: 40px;
     line-height: 35px;
-    border-bottom-right-radius:0.3125em;
-    border-bottom-left-radius:0.3125em;
+    border-bottom-right-radius: 0.3125em;
+    border-bottom-left-radius: 0.3125em;
 }
+
 .m-text-overflow {
-    text-overflow:ellipsis !important;
+    text-overflow: ellipsis !important;
     overflow: hidden;
-    white-space:nowrap;
+    white-space: nowrap;
 }
+
 /*-----position-----*/
 .m-right-top {
     position: absolute;
     top: 0;
     right: 0;
 }
+
 .m-relative {
     position: relative !important;
 }
+
+.m-absolute {
+    position: absolute !important;
+}
+
+.m-nav-block {
+    position: fixed !important;
+    z-index: 100 !important;
+    display: block;
+    max-height: 69px;
+}
+
 .m-absolute {
     z-index: 1 !important;
     position: absolute !important;
+
 }
+
 .m-fixed {
     z-index: 1 !important;
     position: fixed !important;
+}
+
+.m-bottom {
+    bottom: 0 !important;
 }
 
 .m-right-bottom {
     bottom: 0 !important;
     right: 0 !important;
 }
+
 .m-left-bottom {
     left: 0 !important;
     bottom: 0 !important;
 }
+
+.fixed-bottom {
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100%;
+}
+.m-display {
+    display: block;
+}
 /*----color-----*/
+.m-logo {
+    color: rgba(88, 120, 104, 0.96) !important;
+}
 .m-black {
     color: #3d3d3d;
 }
-
+.m-black:hover {
+    color: rgba(84, 84, 84, 0.93) !important;
+}
 .m-mobile-show {
     display: none !important;
 }
-
+.m-a-font {
+    font-size: 20px !important;
+    font-weight: 300 !important;
+}
+.m-a-font-large {
+    font-size: 16px !important;
+    font-weight: 300 !important;
+}
 .m-bg-opacity {
-    opacity: 58%;
+    opacity: 88%;
+}
+
+.m-bg-box {
+    box-shadow: 0 20px 20px 0 white;
+
+}
+
+.m-font {
+    font-size: 10em !important;
+    font-family: "Times New Roman", Georgia, Serif !important;
+    color: #f2f2f2 !important;
+}
+.m-border:hover {
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.9) !important;
+    transition: box-shadow 0.6s;
+}
+/*-----滚动条-----*/
+/*body::-webkit-scrollbar {
+    display: none;
+}*/
+::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(83, 83, 83, 0.47);
+}
+
+::-webkit-scrollbar-track { /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(242, 242, 242, 0.18);
+    border-radius: 10px;
+    background: #f2f2f2;
 }
 
 /*----shadow-----*/
